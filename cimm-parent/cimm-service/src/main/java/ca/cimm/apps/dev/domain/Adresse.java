@@ -1,9 +1,15 @@
 package ca.cimm.apps.dev.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 
 @Embeddable
-public class Adresse {
+public class Adresse implements Serializable {
+	
+	@Transient
+	private static final long serialVersionUID = 1L;
 
 	private String type;
 	
