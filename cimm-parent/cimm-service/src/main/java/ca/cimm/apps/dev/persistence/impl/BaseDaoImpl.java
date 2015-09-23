@@ -11,6 +11,7 @@ import javax.persistence.criteria.Root;
 
 import ca.cimm.apps.dev.domain.AbstractPojo;
 import ca.cimm.apps.dev.domain.type.OrderType;
+import ca.cimm.apps.dev.exception.TechnicalException;
 import ca.cimm.apps.dev.persistence.BaseDao;
 
 public class BaseDaoImpl<T extends AbstractPojo> implements BaseDao<T> {
@@ -47,22 +48,30 @@ public class BaseDaoImpl<T extends AbstractPojo> implements BaseDao<T> {
 
 	@Override
 	public List<T> findAll() {
-
-		return findWith(0, 0, null, null);
+		List<T> results = null;
+		try{
+			results = findWith(0, 0, null, null);
+		}catch(TechnicalException te){
+			//debug logging
+		}
+		return results;
 	}
 
 	@Override
-	public List<T> find(int start, int count) {
-		return findWith(start, count, null, null);
+	public List<T> find(int start, int count, String property) throws TechnicalException {
+		return findWith(start, count, OrderType.ASC, property);
 	}
 
-	private List<T> findWith(int start, int count, OrderType orderType, String property) {
+	private List<T> findWith(int start, int count, OrderType orderType, String property) throws TechnicalException {
+		if(start <0 || count <0){
+			throw new TechnicalException("Parameters shoudn't be negative");
+		}
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 
 		CriteriaQuery<T> criteria = criteriaBuilder.createQuery(clazz);
 		Root<T> root = criteria.from(clazz);
-		Path<T> expression = root.get(property);
-		if (orderType != null) {
+		if (orderType != null && property != null && !property.trim().equals("")) {
+			Path<T> expression = root.get(property);
 			switch (orderType) {
 			case ASC:
 				criteria.orderBy(criteriaBuilder.asc(expression));
@@ -75,7 +84,7 @@ public class BaseDaoImpl<T extends AbstractPojo> implements BaseDao<T> {
 			}
 		}
 		List<T> results = entityManager.createQuery(criteria).getResultList();
-		if (start != 0 && count != 0) {
+		if (start >= 0 && count >= 0) {
 			results = results.subList(Math.max(0, start), Math.min(results.size(), start + count));
 		}
 		return results;

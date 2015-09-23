@@ -7,11 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.cimm.apps.dev.domain.Customer;
+import ca.cimm.apps.dev.exception.TechnicalException;
 import ca.cimm.apps.dev.persistence.CustomerDao;
 import ca.cimm.apps.dev.service.CustomerService;
 
 @Service
-@Transactional(readOnly=true)
+@Transactional
 public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
@@ -43,12 +44,12 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<Customer> find(int start, int count) {
-		return customerDao.find(start, count);
+	public List<Customer> find(int start, int count, String property) throws TechnicalException {
+		return customerDao.find(start, count, property);
 	}
 
 	public void setCustomerDao(CustomerDao customerDao) {
 		this.customerDao = customerDao;
 	}
-	
+
 }

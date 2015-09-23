@@ -16,7 +16,7 @@ import org.joda.time.DateTime;
 import ca.cimm.apps.dev.domain.listener.AbstractPojoListener;
 
 @EntityListeners(value = { AbstractPojoListener.class })
-public class AbstractPojo implements Serializable {
+public abstract class AbstractPojo implements Serializable {
 
 	@Transient
 	private static final long serialVersionUID = -8821356089548498279L;

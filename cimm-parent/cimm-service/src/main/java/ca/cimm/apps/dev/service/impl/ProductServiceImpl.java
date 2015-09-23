@@ -3,11 +3,16 @@ package ca.cimm.apps.dev.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ca.cimm.apps.dev.domain.Product;
+import ca.cimm.apps.dev.exception.TechnicalException;
 import ca.cimm.apps.dev.persistence.ProductDao;
 import ca.cimm.apps.dev.service.ProductService;
 
+@Service
+@Transactional
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired
@@ -39,8 +44,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> find(int start, int count) {
-		return productDao.find(start, count);
+	public List<Product> find(int start, int count, String property) throws TechnicalException {
+		return productDao.find(start, count, property);
 	}
 
 	public void setProductDao(ProductDao productDao) {
