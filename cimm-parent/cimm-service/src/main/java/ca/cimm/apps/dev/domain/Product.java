@@ -1,7 +1,5 @@
 package ca.cimm.apps.dev.domain;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -19,7 +17,7 @@ public class Product extends AbstractPojo {
 
 	private String barCode;
 
-	private List<String> tags;
+	private String tags;
 
 	public String getName() {
 		return name;
@@ -37,11 +35,11 @@ public class Product extends AbstractPojo {
 		this.barCode = barCode;
 	}
 
-	public List<String> getTags() {
+	public String getTags() {
 		return tags;
 	}
 
-	public void setTags(List<String> tags) {
+	public void setTags(String tags) {
 		this.tags = tags;
 	}
 

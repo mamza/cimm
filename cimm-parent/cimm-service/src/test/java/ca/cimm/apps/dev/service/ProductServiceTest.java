@@ -5,8 +5,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.Arrays;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -22,7 +20,7 @@ public class ProductServiceTest extends BaseServiceTest {
 		Product p = new Product();
 		p.setBarCode("#00001111");
 		p.setName("Product Name");
-		p.setTags(Arrays.asList("tag1", "tag2", "tag3"));
+		p.setTags("tag1, tag2, tag3");
 		when(productDao.create(any(Product.class))).thenReturn(1L);
 	    productService.create(p);
 		verify(productDao, times(1)).create(p);
