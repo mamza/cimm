@@ -44,6 +44,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public List<Product> find(int start, int count) throws TechnicalException {
+		return productDao.find(start, count, Product.PROPERTY_NAME);
+	}
+	
+	@Override
 	public List<Product> find(int start, int count, String property) throws TechnicalException {
 		return productDao.find(start, count, property);
 	}

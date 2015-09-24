@@ -44,6 +44,11 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
+	public List<Customer> find(int start, int count) throws TechnicalException {
+		return customerDao.find(start, count, Customer.PROPERTY_LASTNAME);
+	}
+	
+	@Override
 	public List<Customer> find(int start, int count, String property) throws TechnicalException {
 		return customerDao.find(start, count, property);
 	}

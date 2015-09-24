@@ -14,6 +14,8 @@ public class Customer extends AbstractPojo {
 
 	public static final String TABLE_NAME = "CUSTOMER";
 
+	public static final String PROPERTY_LASTNAME = "lastName";
+	
 	private String firstName;
 
 	private String middleName;

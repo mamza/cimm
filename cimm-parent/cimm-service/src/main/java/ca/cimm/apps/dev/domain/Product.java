@@ -13,6 +13,8 @@ public class Product extends AbstractPojo {
 
 	public static final String TABLE_NAME = "PRODUCT";
 
+	public static final String PROPERTY_NAME = "name";
+	
 	private String name;
 
 	private String barCode;

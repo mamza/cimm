@@ -11,5 +11,6 @@ public interface BaseService<T extends AbstractPojo> {
 	T update(T t);
 	void delete(T t);
 	List<T> findAll();
+	List<T> find(int start, int count) throws TechnicalException;
 	List<T> find(int start, int count, String property) throws TechnicalException;
 }
