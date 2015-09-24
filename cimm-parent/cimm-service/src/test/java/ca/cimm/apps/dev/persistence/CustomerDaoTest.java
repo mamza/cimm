@@ -1,4 +1,4 @@
-package m.apps.dev.persistence;
+package ca.cimm.apps.dev.persistence;
 
 import org.junit.Ignore;
 

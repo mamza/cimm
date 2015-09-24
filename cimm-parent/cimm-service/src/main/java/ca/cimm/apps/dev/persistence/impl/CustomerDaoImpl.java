@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import ca.cimm.apps.dev.domain.Customer;
 import ca.cimm.apps.dev.persistence.CustomerDao;
 
-@Repository("customerDao")
+@Repository
 public class CustomerDaoImpl extends BaseDaoImpl<Customer> implements CustomerDao{
 
 	public CustomerDaoImpl() {

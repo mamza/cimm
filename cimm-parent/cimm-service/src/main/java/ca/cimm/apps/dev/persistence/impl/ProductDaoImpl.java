@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import ca.cimm.apps.dev.domain.Product;
 import ca.cimm.apps.dev.persistence.ProductDao;
 
-@Repository("productDao")
+@Repository
 public class ProductDaoImpl extends BaseDaoImpl<Product>  implements ProductDao{
 
 	public ProductDaoImpl() {

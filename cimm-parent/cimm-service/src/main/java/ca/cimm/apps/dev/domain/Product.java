@@ -1,5 +1,7 @@
 package ca.cimm.apps.dev.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -17,6 +19,8 @@ public class Product extends AbstractPojo {
 
 	private String barCode;
 
+	private List<String> tags;
+
 	public String getName() {
 		return name;
 	}
@@ -33,12 +37,21 @@ public class Product extends AbstractPojo {
 		this.barCode = barCode;
 	}
 
+	public List<String> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((barCode == null) ? 0 : barCode.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
 		return result;
 	}
 
@@ -68,6 +81,13 @@ public class Product extends AbstractPojo {
 		} else if (!name.equals(other.name)) {
 			return false;
 		}
+		if (tags == null) {
+			if (other.tags != null) {
+				return false;
+			}
+		} else if (!tags.equals(other.tags)) {
+			return false;
+		}
 		return true;
 	}
 
@@ -78,6 +98,8 @@ public class Product extends AbstractPojo {
 		builder.append(name);
 		builder.append(", barCode=");
 		builder.append(barCode);
+		builder.append(", tags=");
+		builder.append(tags);
 		builder.append("]");
 		return builder.toString();
 	}
